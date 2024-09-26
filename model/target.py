@@ -18,5 +18,6 @@ class Target(Base):
     location = relationship("Location", back_populates="target")
     type = relationship("Type", back_populates="target")
     industry = relationship("Industry", back_populates="target")
+
     def __repr__(self):
         return f"Target<(id={self.id}, lat={self.coordinate.lat}, lon={self.coordinate.lon}, city={self.location.city}, country={self.location.country}, type={self.type.type}, industry={self.industry.industry}, priority={self.priority})>"

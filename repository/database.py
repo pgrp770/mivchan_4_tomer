@@ -1,10 +1,9 @@
 from sqlalchemy import text
 
-from config.base import engine, Base, _session_factory
+from config.base import _session_factory
 
 
 def create_tables():
-    # Base.metadata.create_all(engine)
     create_table_script = """
 
         

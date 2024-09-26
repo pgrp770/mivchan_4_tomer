@@ -1,6 +1,6 @@
 from sqlalchemy import text
 
-from config.base import engine, Base, _session_factory
+from config.base import _session_factory
 
 
 def insert_data_to_normalize_tables():

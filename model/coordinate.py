@@ -11,5 +11,6 @@ class Coordinate(Base):
     lon = Column(Float, nullable=True)
 
     target = relationship("Target", back_populates="coordinate")
+
     def __repr__(self):
         return f"City<(Coordinate={self.lat}, lon={self.lon})>"

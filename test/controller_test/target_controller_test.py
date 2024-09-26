@@ -1,7 +1,6 @@
 import pytest
 from flask import Flask
 from controller.target_controller import target_blueprint
-from model import Target
 
 
 @pytest.fixture
@@ -51,5 +50,5 @@ def test_update_target_api(client):
 
 
 def test_delete_target_api(client):
-    response = client.delete('/delete/201')
+    response = client.delete('/delete/206')
     assert response.status_code == 200

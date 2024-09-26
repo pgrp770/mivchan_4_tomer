@@ -10,5 +10,6 @@ class Type(Base):
     type = Column(String(100), nullable=False)
 
     target = relationship("Target", back_populates="type")
+
     def __repr__(self):
         return f"Type<(id={self.id}, type={self.type})>"

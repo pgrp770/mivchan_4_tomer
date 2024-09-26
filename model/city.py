@@ -10,5 +10,6 @@ class City(Base):
     name = Column(String(100), nullable=False)
 
     location = relationship("Location", back_populates="city")
+
     def __repr__(self):
         return f"City<(id={self.id}, name={self.id})>"

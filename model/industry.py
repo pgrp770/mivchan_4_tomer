@@ -10,5 +10,6 @@ class Industry(Base):
     industry = Column(String(200), nullable=False)
 
     target = relationship("Target", back_populates="industry")
+
     def __repr__(self):
         return f"Industry<(id={self.id}, industry={self.industry})>"

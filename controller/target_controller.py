@@ -1,5 +1,3 @@
-from functools import partial
-
 from flask import Blueprint, request, jsonify
 
 from model import Target
