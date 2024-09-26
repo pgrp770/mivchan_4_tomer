@@ -9,6 +9,7 @@ from model import Target
 def create_target(target: Target) -> Result[Target, str]:
     with session_factory() as session:
         try:
+            breakpoint()
             session.add(target)
             session.commit()
             session.refresh(target)
