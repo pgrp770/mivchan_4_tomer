@@ -36,3 +36,20 @@ def test_create_target_api(client):
               }
     response = client.post('/create', json=target)
     assert response.status_code == 200
+
+
+def test_update_target_api(client):
+    target = {"coordinates_id": 1,
+              "location_id": 1,
+              "type_id": 1,
+              "industry_id": 1,
+              "priority": 1,
+              "mission_id": 2
+              }
+    response = client.put('/update/300', json=target)
+    assert response.status_code == 200
+
+
+def test_delete_target_api(client):
+    response = client.delete('/delete/201')
+    assert response.status_code == 200

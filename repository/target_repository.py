@@ -9,7 +9,6 @@ from model import Target
 def create_target(target: Target) -> Result[Target, str]:
     with session_factory() as session:
         try:
-            breakpoint()
             session.add(target)
             session.commit()
             session.refresh(target)
@@ -50,19 +49,17 @@ def delete_target_by_id(target_id: int) -> Result[Target, str]:
             return Failure(str(e))
 
 
-def update_target(target_id: int, target: Target) -> Result[Target, str]:
+def update_target(target_id: int, target_data: dict) -> Result[Target, str]:
     with session_factory() as session:
         try:
             maybe_target = get_target_by_id(target_id).map(session.merge)
             if maybe_target is Nothing:
                 return Failure(f"No target under the id {target_id}")
             target_to_update = maybe_target.unwrap()
-            target_to_update.city = target.city
-            target_to_update.state = target.state
-            target_to_update.name = target.name
-            target_to_update.address = target.address
-            target_to_update.rental_fee = target.rental_fee
-            target_to_update.late_fee = target.late_fee
+
+            for key, value in target_data.items():
+                setattr(target_to_update, key, value)
+
             session.commit()
             session.refresh(target_to_update)
             return Success(target_to_update)
