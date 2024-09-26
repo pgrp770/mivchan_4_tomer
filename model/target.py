@@ -1,4 +1,5 @@
 from sqlalchemy import *
+from sqlalchemy.orm import relationship
 
 from config.base import Base
 
@@ -12,5 +13,10 @@ class Target(Base):
     industry_id = Column(Integer, ForeignKey("industries.id"))
     priority = Column(Integer)
 
+    coordinate = relationship("Coordinate", back_populates="target")
+    location = relationship("Location", back_populates="target")
+    type = relationship("Type", back_populates="target")
+    industry = relationship("Industry", back_populates="target")
+
     def __repr__(self):
-        return f"City<(id={self.id}, name={self.id})>"
+        return f"Target<(id={self.id}, lat={self.coordinate.lat}, lon={self.coodingate.lon}, city={self.location.city}, country={self.loaction.country}, type={self.type.type}, industry={self.industry.industry}, priority={self.priority})>"

@@ -1,4 +1,5 @@
 from sqlalchemy import *
+from sqlalchemy.orm import relationship
 
 from config.base import Base
 
@@ -9,5 +10,10 @@ class Location(Base):
     city_id = Column(Integer, ForeignKey("cities.id"))
     country_id = Column(Integer, ForeignKey("countries.id"))
 
+    city = relationship("City", back_populates="location")
+    country = relationship("Country", back_populates="location")
+
+    target = relationship("Target", back_populates="location")
+
     def __repr__(self):
-        return f"City<(id={self.id}, name={self.id})>"
+        return f"Location<(id={self.id}, city={self.city.name}, country={self.country.name})>"
